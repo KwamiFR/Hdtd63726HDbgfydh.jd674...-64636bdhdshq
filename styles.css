@@ -184,3 +184,84 @@ header p {
     max-height: 120px; /* Limite la hauteur de la liste des épisodes */
     overflow-y: auto; /* Ajoute un défilement si trop d'épisodes */
 }
+
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    #search-bar {
+        width: 100%; /* Prendre toute la largeur */
+    }
+
+    header {
+        padding: 10px; /* Réduire le padding du header */
+    }
+
+    h2 {
+        font-size: 20px; /* Réduire la taille du titre */
+    }
+
+    .list {
+        flex-direction: column; /* Afficher les cartes en colonne */
+        align-items: center; /* Centrer les éléments */
+    }
+
+    .card {
+        width: 90%; /* Largeur des cartes à 90% */
+    }
+
+    .info-container {
+        flex-direction: column; /* Disposer les détails en colonne sur mobile */
+        align-items: center; /* Centrer les détails */
+    }
+
+    .poster {
+        margin: 0 0 10px 0; /* Marges sur les posters */
+        width: 100%; /* Afficher le poster à 100% de la largeur */
+    }
+
+    .episode-button {
+        font-size: 14px; /* Réduire la taille des boutons */
+        padding: 8px 12px; /* Ajuster le padding */
+    }
+
+    .episode-scroll {
+        max-height: 200px; /* Augmenter la hauteur pour les mobiles */
+    }
+
+    header p {
+        font-size: 14px; /* Adapter la taille du texte */
+    }
+
+    .modal-content {
+        width: 95%; /* Rendre la modale plus large pour les petits écrans */
+        margin: 10% auto; /* Ajuster la marge de la modale */
+    }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #search-bar {
+        width: 80%; /* Prendre 80% sur tablette */
+    }
+
+    .list {
+        flex-direction: row; /* Repasser à l'affichage en ligne */
+        justify-content: center; /* Centrer les cartes */
+    }
+
+    .card {
+        width: 45%; /* Augmenter la largeur à 45% sur tablette */
+    }
+
+    .poster {
+        width: 80%; /* Réduire un peu la largeur du poster */
+    }
+
+    .episode-button {
+        font-size: 15px; /* Ajuster la taille des boutons */
+    }
+
+    .modal-content {
+        width: 90%; /* Ajuster la largeur de la modale */
+    }
+}
