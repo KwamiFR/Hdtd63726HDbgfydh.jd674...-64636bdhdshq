@@ -176,5 +176,22 @@ modalSTV.querySelector('.close-stv').onclick = () => {
     stvembedContainer.style.display = 'none'; 
 };
 
+
 // Initialize content on page load
 init();
+
+// Gérer le défilement de la barre de navigation
+const header = document.querySelector('header');
+let lastScrollTop = 0;
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+
+    lastScrollTop = scrollTop;
+});
