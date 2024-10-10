@@ -7,6 +7,7 @@ body {
     margin: 0;
     background-color: #121212;
     color: #ffd900; 
+    overflow-x: hidden; /* Évite le défilement horizontal */
 }
 
 header {
@@ -18,6 +19,11 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000; 
+    transition: transform 0.3s ease; /* Animation pour le défilement */
+}
+
+header.scrolled {
+    transform: translateY(-100%); /* Cache le header quand on scroll */
 }
 
 #search-bar {
@@ -51,7 +57,7 @@ h2 {
     width: 200px;
     margin: 10px;
     cursor: pointer;
-    transition: transform 0.2s; 
+    transition: transform 0.2s, box-shadow 0.2s; /* Amélioration : ajout de l'ombre lors du survol */
     background-color: #1c1c1c;
     border-radius: 10px;
     overflow: hidden;
@@ -60,12 +66,13 @@ h2 {
 
 .card:hover {
     transform: scale(1.05); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Effet d'ombre sur survol */
 }
 
 .card img {
     width: 100%;
     border-radius: 10px;
-    border-bottom: 2px solid #28a745; 
+    border-bottom: 2px solid #fff7036e; 
 }
 
 .card-title {
@@ -119,11 +126,12 @@ h2 {
     cursor: pointer;
     font-size: 16px;
     margin: 5px 0; 
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s, transform 0.2s; /* Animation d'agrandissement */
 }
 
 .episode-button:hover {
     background-color: #ffd900;
+    transform: scale(1.05); /* Effet d'agrandissement sur survol */
 }
 
 .stv-embed-container, .movie-embed-container {
@@ -185,11 +193,30 @@ header p {
     overflow-y: auto; /* Ajoute un défilement si trop d'épisodes */
 }
 
+.loading-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+}
+
+.loading-content {
+    color: #ffd900;
+    text-align: center;
+    font-size: 24px;
+}
 
 /* Mobile Devices */
 @media (max-width: 768px) {
     #search-bar {
         width: 100%; /* Prendre toute la largeur */
+        margin-bottom: 20px; /* Ajouter un espace en bas du barre de recherche */
     }
 
     header {
@@ -198,15 +225,19 @@ header p {
 
     h2 {
         font-size: 20px; /* Réduire la taille du titre */
+        text-align: center; /* Centrer le titre */
     }
 
     .list {
-        flex-direction: column; /* Afficher les cartes en colonne */
-        align-items: center; /* Centrer les éléments */
+        display: flex; /* Utiliser flexbox pour une meilleure disposition */
+        flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne */
+        justify-content: space-between; /* Espacement entre les cartes */
+        align-items: flex-start; /* Aligner les éléments en haut */
     }
 
     .card {
-        width: 90%; /* Largeur des cartes à 90% */
+        width: calc(33.33% - 10px); /* Largeur des cartes à un tiers moins un espacement */
+        margin-bottom: 15px; /* Ajouter de l'espace en bas des cartes */
     }
 
     .info-container {
@@ -215,8 +246,8 @@ header p {
     }
 
     .poster {
-        margin: 0 0 10px 0; /* Marges sur les posters */
         width: 100%; /* Afficher le poster à 100% de la largeur */
+        margin-bottom: 10px; /* Marges sur les posters */
     }
 
     .episode-button {
@@ -230,6 +261,7 @@ header p {
 
     header p {
         font-size: 14px; /* Adapter la taille du texte */
+        text-align: center; /* Centrer le texte */
     }
 
     .modal-content {
@@ -242,19 +274,26 @@ header p {
 @media (min-width: 769px) and (max-width: 1024px) {
     #search-bar {
         width: 80%; /* Prendre 80% sur tablette */
+        margin: 20px auto; /* Centrer la barre de recherche */
+    }
+
+    header {
+        text-align: center; /* Centrer le contenu du header */
     }
 
     .list {
-        flex-direction: row; /* Repasser à l'affichage en ligne */
-        justify-content: center; /* Centrer les cartes */
+        display: flex; /* Utiliser flexbox pour aligner les cartes */
+        flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne */
+        justify-content: space-around; /* Espacement et alignement */
     }
 
     .card {
-        width: 45%; /* Augmenter la largeur à 45% sur tablette */
+        width: calc(30% - 10px); /* Largeur des cartes à environ 30% */
+        margin-bottom: 15px; /* Ajouter de l'espace en bas des cartes */
     }
 
     .poster {
-        width: 80%; /* Réduire un peu la largeur du poster */
+        width: 100%; /* Afficher le poster à 100% de la largeur */
     }
 
     .episode-button {
