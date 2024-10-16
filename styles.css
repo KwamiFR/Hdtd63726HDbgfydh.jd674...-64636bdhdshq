@@ -1,0 +1,358 @@
+* {
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #121212;
+    color: #ffd900; 
+    overflow-x: hidden; /* Évite le défilement horizontal */
+    transition: background-color 0.5s; /* Transition du fond pour une meilleure fluidité */
+}
+
+header {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px;
+    background-color: #1c1c1c;
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    transition: transform 0.3s ease, background-color 0.5s; /* Animation pour le défilement */
+}
+
+header.scrolled {
+    transform: translateY(-100%); /* Cache le header quand on scroll */
+}
+
+#search-bar {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    transition: border-color 0.3s, box-shadow 0.3s; 
+    margin-top: 10px; 
+}
+
+#search-bar:focus {
+    border-color: #28a745;
+    outline: none; 
+    box-shadow: 0 0 5px #28a745; /* Ombre lors du focus */
+}
+
+h2 {
+    margin: 20px 0;
+    font-size: 24px; 
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7); /* Ajout d'une ombre au texte */
+    transition: color 0.3s; /* Animation de couleur */
+}
+
+h2:hover {
+    color: #28a745; /* Changement de couleur au survol */
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px; 
+}
+
+.card {
+    display: inline-block;
+    width: 200px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s; /* Animation de fond */
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8); /* Effet d'ombre sur survol */
+    background-color: #292929; /* Changement de couleur au survol */
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    border-bottom: 2px solid #00ff11; 
+    transition: transform 0.3s ease; /* Animation des images */
+}
+
+.card:hover img {
+    transform: scale(1.1); /* Zoom sur l'image au survol */
+}
+
+.card-title {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center; 
+    transition: color 0.3s; /* Animation de la couleur du texte */
+}
+
+.card:hover .card-title {
+    color: #28a745; /* Changement de couleur au survol */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+    padding: 20px; 
+}
+
+.modal-content {
+    background-color: #2c2c2c;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    position: relative; 
+    animation: fadeIn 0.5s; /* Animation d'apparition de la modale */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9); /* Ombre autour de la modale */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.close-movie, .close-stv {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold; 
+}
+
+.close-movie:hover, .close-movie:focus,
+.close-stv:hover, .close-stv:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer; 
+}
+
+.episode-button {
+    background-color: #1aa34a;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px 0; 
+    transition: background-color 0.3s, transform 0.2s; /* Animation d'agrandissement */
+}
+
+.episode-button:hover {
+    background-color: #ffd900;
+    transform: scale(1.05); /* Effet d'agrandissement sur survol */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Ombre sur hover */
+}
+
+.stv-embed-container, .movie-embed-container {
+    display: none;
+    margin-top: 20px;
+    position: relative;
+    padding-bottom: 56.25%; 
+}
+
+.stv-embed-container iframe, .movie-embed-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; 
+    border-radius: 10px; /* Arrondir les bords des iframes */
+    transition: transform 0.3s ease; /* Animation des iframes */
+}
+
+.stv-embed-container:hover iframe, .movie-embed-container:hover iframe {
+    transform: scale(1.02); /* Zoom léger des iframes au survol */
+}
+
+.info-container {
+    display: flex;
+    align-items: flex-start; 
+}
+
+.poster {
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 150px; 
+    height: auto; 
+    transition: transform 0.3s; /* Animation pour poster */
+}
+
+.poster:hover {
+    transform: scale(1.05); /* Zoom léger sur le poster au survol */
+}
+
+.info-details {
+    flex-grow: 1; 
+}
+
+#season-list, #episode-list {
+    margin-top: 20px; 
+}
+
+header p {
+    margin: 0;
+    font-size: 16px; 
+    color: #ffffff; 
+    transition: color 0.3s; /* Animation de la couleur du texte */
+}
+
+header p:hover {
+    color: #28a745; /* Changement de couleur au survol */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+#search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px; 
+    transition: transform 0.2s; /* Animation de zoom */
+}
+
+#search-button:hover {
+    transform: scale(1.1); /* Agrandissement au survol */
+}
+
+.episode-scroll {
+    max-height: 120px; /* Limite la hauteur de la liste des épisodes */
+    overflow-y: auto; /* Ajoute un défilement si trop d'épisodes */
+    animation: fadeIn 0.5s; /* Animation d'apparition */
+}
+
+.loading-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.862);
+    animation: fadeIn 0.5s; /* Animation d'apparition */
+}
+
+.loading-content {
+    color: #ffd900;
+    text-align: center;
+    font-size: 24px;
+}
+
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    #search-bar {
+        width: 100%; /* Prendre toute la largeur */
+        margin-bottom: 20px; /* Ajouter un espace en bas du barre de recherche */
+    }
+
+    header {
+        padding: 10px; /* Réduire le padding du header */
+    }
+
+    h2 {
+        font-size: 20px; /* Réduire la taille du titre */
+        text-align: center; /* Centrer le titre */
+    }
+
+    .list {
+        display: flex; /* Utiliser flexbox pour une meilleure disposition */
+        flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne */
+        justify-content: space-between; /* Espacement entre les cartes */
+        align-items: flex-start; /* Aligner les éléments en haut */
+    }
+
+    .card {
+        width: calc(33.33% - 10px); /* Largeur des cartes à un tiers moins un espacement */
+        margin-bottom: 15px; /* Ajouter de l'espace en bas des cartes */
+    }
+
+    .info-container {
+        flex-direction: column; /* Disposer les détails en colonne sur mobile */
+        align-items: center; /* Centrer les détails */
+    }
+
+    .poster {
+        width: 100%; /* Afficher le poster à 100% de la largeur */
+        margin-bottom: 10px; /* Marges sur les posters */
+    }
+
+    .episode-button {
+        font-size: 14px; /* Réduire la taille des boutons */
+        padding: 8px 12px; /* Ajuster le padding */
+    }
+
+    .episode-scroll {
+        max-height: 200px; /* Augmenter la hauteur pour les mobiles */
+    }
+
+    header p {
+        font-size: 14px; /* Adapter la taille du texte */
+        text-align: center; /* Centrer le texte */
+    }
+
+    .modal-content {
+        width: 95%; /* Rendre la modale plus large pour les petits écrans */
+        margin: 10% auto; /* Ajuster la marge de la modale */
+    }
+}
+
+/* Tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #search-bar {
+        width: 80%; /* Prendre 80% sur tablette */
+        margin: 20px auto; /* Centrer la barre de recherche */
+    }
+
+    header {
+        text-align: center; /* Centrer le contenu du header */
+    }
+
+    .list {
+        display: flex; /* Utiliser flexbox pour aligner les cartes */
+        flex-wrap: wrap; /* Permettre aux éléments de passer à la ligne */
+        justify-content: space-around; /* Espacement et alignement */
+    }
+
+    .card {
+        width: calc(30% - 10px); /* Largeur des cartes à environ 30% */
+        margin-bottom: 15px; /* Ajouter de l'espace en bas des cartes */
+    }
+
+    .poster {
+        width: 100%; /* Afficher le poster à 100% de la largeur */
+    }
+
+    .episode-button {
+        font-size: 15px; /* Ajuster la taille des boutons */
+    }
+
+    .modal-content {
+        width: 90%; /* Ajuster la largeur de la modale */
+    }
+
+}
