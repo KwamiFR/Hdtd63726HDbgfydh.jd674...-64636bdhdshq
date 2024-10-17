@@ -262,6 +262,29 @@ header p:hover {
     font-size: 24px;
 }
 
+.scrolling-container {
+    width: 100%; /* Prend toute la largeur de l'écran */
+    background-color: yellow; /* Couleur de fond jaune */
+    overflow: hidden; /* Cacher le débordement */
+    white-space: nowrap; /* Empêche le retour à la ligne */
+}
+
+.scrolling-text {
+    display: inline-block; /* Rend le texte défilant sur une seule ligne */
+    color: red; /* Couleur du texte rouge */
+    padding: 10px; /* Ajoute de l'espace autour du texte */
+    animation: scroll 20s linear infinite; /* Animation de défilement */
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%); /* Commence en dehors de l'écran à droite */
+    }
+    100% {
+        transform: translateX(-100%); /* Finit en dehors de l'écran à gauche */
+    }
+}
+
 
 /* Mobile Devices */
 @media (max-width: 768px) {
@@ -354,5 +377,4 @@ header p:hover {
     .modal-content {
         width: 90%; /* Ajuster la largeur de la modale */
     }
-
 }
