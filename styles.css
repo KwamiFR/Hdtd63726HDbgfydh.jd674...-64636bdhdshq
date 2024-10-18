@@ -273,7 +273,7 @@ header p:hover {
     display: inline-block; /* Rend le texte défilant sur une seule ligne */
     color: red; /* Couleur du texte rouge */
     padding: 10px; /* Ajoute de l'espace autour du texte */
-    animation: scroll 20s linear infinite; /* Animation de défilement */
+    animation: scroll 30s linear infinite; /* Animation de défilement */
 }
 
 @keyframes scroll {
