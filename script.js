@@ -71,7 +71,7 @@ function showMovieInfo(item) {
 
 // Watch the selected movie
 function watchMovie() {
-    const embedUrl = `https://vidsrc.icu/embed/movie/${currentMovieId}`; // Update with your movie stream source
+    const embedUrl = `https://vidlink.pro/movie/${currentMovieId}`; // Update with your movie stream source
     movieembedContainer.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
     movieembedContainer.style.display = 'block';
 }
@@ -137,7 +137,7 @@ async function loadEpisodes(tvId, seasonNumber) {
 
 // Watch the selected episode
 function watchEpisode(tvId, seasonNumber, episodeNumber) {
-    const embedUrl = `https://vidsrc.icu/embed/tv/${tvId}/${seasonNumber}/${episodeNumber}`; // Update with your TV episode stream source
+    const embedUrl = `https://vidlink.pro/tv/${tvId}/${seasonNumber}/${episodeNumber}`; // Update with your TV episode stream source
     stvembedContainer.innerHTML = `<iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe>`;
     stvembedContainer.style.display = 'block';
 }
