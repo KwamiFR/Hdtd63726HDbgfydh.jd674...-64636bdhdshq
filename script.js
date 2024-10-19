@@ -1,4 +1,4 @@
-const apiKeyTMDB = '6fbec6555f5ace1ddf25d358051c0a07'; // L'API CHANGE CHAQUE JOUR EST SERA BIENTÔT ENTIÈREMENT CRYPTÉ SUR UN SERVEUR VPS
+const apiKeyTMDB = '7068c99fa8a9963fa5bbe4ccc8092820'; // L'API CHANGE CHAQUE JOUR EST SERA BIENTÔT ENTIÈREMENT CRYPTÉ SUR UN SERVEUR VPS
 const movieList = document.getElementById('movie-list');
 const stvList = document.getElementById('stv-list');
 const searchBar = document.getElementById('search-bar');
