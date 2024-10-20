@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès refusé</title>
+    <script>
+        // Fonction pour détecter si l'appareil est une télévision
+        function isSmartTV() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            // Liste d'exemples de chaînes que l'on pourrait trouver dans les user agents TV
+            const tvUserAgents = [
+                'smarttv', 
+                'tizen', 
+                'lg', 
+                'roku', 
+                'apple tv',
+                'netcast', 
+                'vizio'
+            ];
+            return tvUserAgents.some(tv => userAgent.includes(tv));
+        }
+
+        // Exécutez la fonction lorsque le DOM est complètement chargé
+        document.addEventListener('DOMContentLoaded', () => {
+            if (isSmartTV()) {
+                // Rediriger ou afficher un message de refus
+                document.body.innerHTML = '<h1>Accès refusé</h1><p>Ce site n\'est pas accessible sur les télévisions.</p>';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Bienvenue sur notre site</h1>
+    <p>Contenu du site accessible sur les appareils compatibles.</p>
+</body>
+</html>
